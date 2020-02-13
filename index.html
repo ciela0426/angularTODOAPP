@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <script data-require="angularjs@1.5.7" data-semver="1.5.7" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-app="todoApp" ng-controller='TodoCtrl'>
+    <h1>TodoList {{ name }}</h1>
+    <!--{{ todo }}
+    <h3>{{ todo.title }}</h3>
+    <p>{{ todo.completed }}</p>
+    <date>{{ todo.createdAt }}</date>-->
+    
+    
+    <ul class="list-unstyled">
+      <li ng-repeat="todo in todos | filter:statusFilter">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <input type="checkbox" ng-model="todo.completed" aria-label="...">
+          </span>
+          <input type="text" ng-model="todo.title" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button">삭제</button>
+          </span>
+        </div><!-- /input-group -->
+        <date>{{ todo.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</date>
+      </li>
+    </ul>
+    
+    <button class="btn btn-primary" ng-click="statusFilter={completed:true}">Completed</button>
+    <button class="btn btn-primary" ng-click="statusFilter={completed:false}">Active</button>
+    <button class="btn btn-primary" ng-click="statusFilter={}">All</button>
+  </body>
+
+</html>
